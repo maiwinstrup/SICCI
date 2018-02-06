@@ -32,7 +32,7 @@ def optimize(Tb,inputpar):
     
     # Iterations:
     max_iter = 6 # Maximum number of iterations
-    eps = -1000 # 0.5 # Convergence criterion, if negative (&large): Iterate until convergence
+    eps = 0.5 # Convergence criterion, if negative (&large): Iterate until convergence
     cost = np.inf
     dcost = np.inf
     
@@ -56,8 +56,8 @@ def optimize(Tb,inputpar):
             # Compute partial derivates (parameters are pertubed by 1% of current value):
             Pa = np.copy(P); Pa[i]=P[i]+0.01*P[i]
             #Pb = np.copy(P); Pb[i]=P[i]-0.01*P[i]
-            Pb = np.copy(P); #Pb[i]=P[i]-0.01*P[i]
-            dp = 0.01*P[i]
+            Pb = np.copy(P); Pb[i]=P[i]-0.01*P[i]
+            dp = 0.02*P[i]
 
             # Partial differences:
             dTdp =(amsrrtm2.amsr(Pa[1],Pa[2],Pa[3],Pa[0],Pa[0],Ts_amsr,Ts_amsr,Pa[4],icemodel.ev_ice(Tb,Pa[0],Pa[5]),icemodel.eh_ice(Tb,Pa[0],Pa[5])) - 
@@ -74,8 +74,7 @@ def optimize(Tb,inputpar):
         P1 = np.squeeze(np.asarray(P1))
         
         # Ensure parameters stay within physical limits:
-        #dlim = [0.01, 0.01, 0.01, 0.001, 0.01, 0.01] # why not set as max value? - to avoid 0'es
-        dlim = [0.1, 0.1, 0.1, 0.01, 0.1, 0.1] # why not set as max value? - to avoid 0'es
+        dlim = [0.01, 0.01, 0.01, 0.001, 0.01, 0.01] # why not set as max value? - to avoid 0'es
         for k in range(len_p):
             if (P1[k] < lowerlimits[k]): P1[k] = lowerlimits[k]+dlim[k]
             if (P1[k] > upperlimits[k]): P1[k] = upperlimits[k]

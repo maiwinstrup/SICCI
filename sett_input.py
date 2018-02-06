@@ -70,7 +70,7 @@ def setinputpar(Tb):
     
     # Lower and upper limits for physical parameters
     lowerlimits=np.array([200.0, 0.0, 0.0, 0.0, 0.9, 0.0])
-    upperlimits=np.array([300.0,40.0,50.0, 1.0, 2.1, 1.0])
+    upperlimits=np.array([280.0,40.0,50.0, 1.0, 2.1, 1.0])
     ##oevre og nedre graenser til de fysiske parametre
     #L=np.array([270.0,320.0,0.0,40.0,0.0,50.0,0.0,1.0])
     ##oevre og nedre graenser til de fysiske parametre
