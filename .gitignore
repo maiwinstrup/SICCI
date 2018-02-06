@@ -1,8 +1,8 @@
-*.nc
-./Data/*
-./Out/*
-./RRDP_v2.0
-./scripts_jol
-./SICCI_RRDP-V1_1
-./unusedcode
-./createmaps
+/Data/*
+/RRDP_v2.0/*
+/SICCI-RRDP-V1_1/*
+/Out/*
+/scripts_jol/*
+/unusedcode/*
+/createmaps/*
+/importdata/*
