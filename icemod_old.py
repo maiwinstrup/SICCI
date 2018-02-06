@@ -1,5 +1,5 @@
 import numpy as np
-import reg_mod13 as rm
+import reg_mod13_old as rm
 
 def Ts_amsr(Tb):
    Tb6v = np.float(Tb[0]) #6v
@@ -92,6 +92,7 @@ def ev_ice(Tb,IST,SD):
    e89v=Tbsim[8]/Teff89v
    e89v=max(0.0,e89v)
    e89v=min(1.0,e89v)
+   
    ev=np.array([e6v,e10v,e18v,e18v,e37v,e37v,e37v,e89v])
 
    return ev

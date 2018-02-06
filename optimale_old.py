@@ -2,12 +2,12 @@
 # -*- coding: ascii -*-
 
 import numpy as np
-import ssmirtm2 as ssmi
-import smmr
+#import ssmirtm2 as ssmi
+#import smmr
 import amsrrtm2
-import emimod
-import icemod
-import bootstrap_f
+#import emimod
+import icemod_old as icemod
+import bootstrap_f_old as bootstrap_f
 
 
 def optimal(Tb):
@@ -102,7 +102,7 @@ def optimal(Tb):
                 #M matricen "the adjoint" foeste iteration bruger initialvaerdierne
                 M[i,:] = (amsrrtm2.amsr((0.01*(i==1)*P0[1])+P0[1],(0.01*(i==2)*P0[2])+P0[2],(0.01*(i==3)*P0[3])+\
                          P0[3],(0.01*(i==0)*P0[0])+P0[0],(0.01*(i==0)*P0[0])+P0[0],Ts_amsr,Ts_amsr,(0.01*(i==4)*c_ice+c_ice),\
-                         icemod.ev_ice(Tb,(0.01*(i==0)*P0[0])+P0[0],(0.01*(i==5)*P0[0])+P0[5]),icemod.eh_ice(Tb,(0.01*(i==0)*P0[0])+P0[0],(0.01*(i==5)*P0[0])+P0[5])) - \
+                         icemod.ev_ice(Tb,(0.01*(i==0)*P0[0])+P0[0],(0.01*(i==5)*P0[5])+P0[5]),icemod.eh_ice(Tb,(0.01*(i==0)*P0[0])+P0[0],(0.01*(i==5)*P0[5])+P0[5])) - \
                          amsrrtm2.amsr(P0[1],P0[2],P0[3],P0[0],P0[0],Ts_amsr,Ts_amsr,c_ice,icemod.ev_ice(Tb,P0[0],P0[5]),icemod.eh_ice(Tb,P0[0],P0[5]))) / \
                          (((i==0)*0.01)*P0[0]+((i==1)*0.01)*P0[1]+((i==2)*0.01)*P0[2]+((i==3)*0.01)*P0[3]+((i==4)*0.01)*P0[4]+((i==5)*0.01)*P0[5])
                 #efterfoelgende iterationer

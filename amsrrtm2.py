@@ -171,7 +171,7 @@ def amsr(V,W,L,Ta,Ts,Ti_amsrv,Ti_amsrh,c_ice,e_icev,e_iceh):
 
         R_H[i]=(1-F_H[i])*R_geoH[i]
         R_V[i]=(1-F_V[i])*R_geoV[i]
-
+        
         emissivityh[i]=1-R_H[i]
         emissivityv[i]=1-R_V[i]
 
@@ -237,5 +237,4 @@ def amsr(V,W,L,Ta,Ts,Ti_amsrv,Ti_amsrh,c_ice,e_icev,e_iceh):
         Tv=[Tv6,Tv10,Tv18,Tv23,Tv36,Tv50,Tv52,Tv89]
         Th=[Th6,Th10,Th18,Th23,Th36,Th50,Th52,Th89]
         Tb=np.array([Tv6,Th6,Tv10,Th10,Tv18,Th18,Tv23,Th23,Tv36,Th36,Tv89,Th89])
-    #return Tv, Th
     return Tb

@@ -1,9 +1,14 @@
+#!/usr/bin/python
+"""
+Comiso ice concentration algorithm with bootstrap winter tie points (Comiso, 1997)
+Usage:
+ >>>  bootstrap_f(<Tb18v>, <Tb37v>)
+"""
+
 def bootstrap_f(tb18v, tb37v):
-    """Comiso ice concentration algorithm
-    """
-    """bootstrap winter tie points (Comiso, 1997)"""
-    tiepts = [202.00, 182.00, 246.00, 130.00, 170.00, 234.00, 179.00,\
-                  218.00, 253.00, 0.0, 0.0, 0.0]
+    # Tiepoints:
+    tiepts = [202.00, 182.00, 246.00, 130.00, 170.00, 234.00, 179.00,
+              218.00, 253.00, 0.0, 0.0, 0.0]
 
     tw18v = tiepts[7 - 1]
     tw37v = tiepts[1 - 1]
@@ -11,7 +16,6 @@ def bootstrap_f(tb18v, tb37v):
     tfy37v = tiepts[3 - 1]
     tmy18v = tiepts[8 - 1]
     tmy37v = tiepts[2 - 1]
-
 
     af = (tfy37v - tmy37v)/(tfy18v - tmy18v)
     bf = (tmy37v - af*tmy18v)
@@ -21,7 +25,8 @@ def bootstrap_f(tb18v, tb37v):
     wf = (tw37v - qf*tw18v)
     ti18vf = (bf - wf)/(qf - af)
     cf = (tb18v - tw18v)/(ti18vf - tw18v)
+    
+    # Impose limits:
     cf=min(cf,1.0)
     cf=max(cf,0.0)
     return cf
-
