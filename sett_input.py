@@ -16,8 +16,9 @@ from icemodel import liseequation
 def setinputpar(Tb):
     # Covariance matrix for measured brightness temperatures (Tb): 
     # A diagonal nxn matrix, here n = 12 (number of temperature channels)
-    v = (np.ones([12]))*0.5
-    v[10:12]=1 # 89 GHz channels are allowed higher variance 
+    #v = (np.ones([12]))*0.5
+    v = (np.ones([12]))*(1**2)
+    v[10:12]=2**2 #1 # 89 GHz channels are allowed higher variance 
     # Previous values ??: 
     # v = [0.0900, 0.1089, 0.2209, 0.2916, 0.2304, 0.2116, 0.2025, 0.1936, 0.2025, 0.1600, 0.1600, 0.1600]
     

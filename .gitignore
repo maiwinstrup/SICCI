@@ -6,3 +6,6 @@
 /unusedcode/*
 /createmaps/*
 /importdata/*
+*.pyc
+/matlabfiles_memls/*
+/.ipynb_checkpoints

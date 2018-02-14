@@ -186,55 +186,55 @@ def amsr(V,W,L,Ta,Ts,Ti_amsrv,Ti_amsrh,c_ice,e_icev,e_iceh):
         T_BOmegaH[i]=((1+OmegaH[i])*(1-tau[i])*(TD[i]-T_C)+T_C)*R_H[i] 
         T_BOmegaV[i]=((1+OmegaV[i])*(1-tau[i])*(TD[i]-T_C)+T_C)*R_V[i]
         
-        Th6=TBU[0]+tau[0]*((1.0 - c_ice)*emissivityh[0]*Ts+c_ice*e_iceh[0]*Ti_amsrh[0]+(1.0 - c_ice)*\
-            (1.0 - emissivityh[0])*(T_BOmegaH[0]+tau[0]*T_C)+c_ice*(1.0 - e_iceh[0])*(TBD[0]+tau[0]*T_C))
+    Th6=TBU[0]+tau[0]*((1.0 - c_ice)*emissivityh[0]*Ts+c_ice*e_iceh[0]*Ti_amsrh[0]+(1.0 - c_ice)*\
+        (1.0 - emissivityh[0])*(T_BOmegaH[0]+tau[0]*T_C)+c_ice*(1.0 - e_iceh[0])*(TBD[0]+tau[0]*T_C))
 
-        Tv6=TBU[0]+tau[0]*((1.0 - c_ice)*emissivityv[0]*Ts+c_ice*e_icev[0]*Ti_amsrv[0]+(1.0 - c_ice)*\
-            (1.0 - emissivityv[0])*(T_BOmegaV[0]+tau[0]*T_C)+c_ice*(1.0 - e_icev[0])*(TBD[0]+tau[0]*T_C))
+    Tv6=TBU[0]+tau[0]*((1.0 - c_ice)*emissivityv[0]*Ts+c_ice*e_icev[0]*Ti_amsrv[0]+(1.0 - c_ice)*\
+        (1.0 - emissivityv[0])*(T_BOmegaV[0]+tau[0]*T_C)+c_ice*(1.0 - e_icev[0])*(TBD[0]+tau[0]*T_C))
         
-        Th10=TBU[1]+tau[1]*((1.0 - c_ice)*emissivityh[1]*Ts+c_ice*e_iceh[1]*Ti_amsrh[1]+(1.0 - c_ice)*\
-             (1.0 - emissivityh[1])*(T_BOmegaH[1]+tau[1]*T_C)+c_ice*(1.0 - e_iceh[1])*(TBD[1]+tau[1]*T_C))
+    Th10=TBU[1]+tau[1]*((1.0 - c_ice)*emissivityh[1]*Ts+c_ice*e_iceh[1]*Ti_amsrh[1]+(1.0 - c_ice)*\
+         (1.0 - emissivityh[1])*(T_BOmegaH[1]+tau[1]*T_C)+c_ice*(1.0 - e_iceh[1])*(TBD[1]+tau[1]*T_C))
 
-        Tv10=TBU[1]+tau[1]*((1.0 - c_ice)*emissivityv[1]*Ts+c_ice*e_icev[1]*Ti_amsrv[1]+(1.0 - c_ice)*\
-             (1.0 - emissivityv[1])*(T_BOmegaV[1]+tau[1]*T_C)+c_ice*(1.0 - e_icev[1])*(TBD[1]+tau[1]*T_C))
+    Tv10=TBU[1]+tau[1]*((1.0 - c_ice)*emissivityv[1]*Ts+c_ice*e_icev[1]*Ti_amsrv[1]+(1.0 - c_ice)*\
+         (1.0 - emissivityv[1])*(T_BOmegaV[1]+tau[1]*T_C)+c_ice*(1.0 - e_icev[1])*(TBD[1]+tau[1]*T_C))
         
-        Th18=TBU[2]+tau[2]*((1.0 - c_ice)*emissivityh[2]*Ts+c_ice*e_iceh[2]*Ti_amsrh[2]+(1.0 - c_ice)*(1.0 - emissivityh[2])*\
-             (T_BOmegaH[2]+tau[2]*T_C)+c_ice*(1.0 - e_iceh[2])*(TBD[2]+tau[2]*T_C))
+    Th18=TBU[2]+tau[2]*((1.0 - c_ice)*emissivityh[2]*Ts+c_ice*e_iceh[2]*Ti_amsrh[2]+(1.0 - c_ice)*(1.0 - emissivityh[2])*\
+         (T_BOmegaH[2]+tau[2]*T_C)+c_ice*(1.0 - e_iceh[2])*(TBD[2]+tau[2]*T_C))
 
-        Tv18=TBU[2]+tau[2]*((1.0 - c_ice)*emissivityv[2]*Ts+c_ice*e_icev[2]*Ti_amsrv[2]+(1.0 - c_ice)*(1.0 - emissivityv[2])*\
-             (T_BOmegaV[2]+tau[2]*T_C)+c_ice*(1.0 - e_icev[2])*(TBD[2]+tau[2]*T_C))
-        
-        Th23=TBU[3]+tau[3]*((1.0 - c_ice)*emissivityh[3]*Ts+c_ice*e_iceh[3]*Ti_amsrh[3]+(1.0 - c_ice)*(1.0 - emissivityh[3])*\
-             (T_BOmegaH[3]+tau[3]*T_C)+c_ice*(1.0 - e_iceh[3])*(TBD[3]+tau[3]*T_C))
+    Tv18=TBU[2]+tau[2]*((1.0 - c_ice)*emissivityv[2]*Ts+c_ice*e_icev[2]*Ti_amsrv[2]+(1.0 - c_ice)*(1.0 - emissivityv[2])*\
+         (T_BOmegaV[2]+tau[2]*T_C)+c_ice*(1.0 - e_icev[2])*(TBD[2]+tau[2]*T_C))
+      
+    Th23=TBU[3]+tau[3]*((1.0 - c_ice)*emissivityh[3]*Ts+c_ice*e_iceh[3]*Ti_amsrh[3]+(1.0 - c_ice)*(1.0 - emissivityh[3])*\
+         (T_BOmegaH[3]+tau[3]*T_C)+c_ice*(1.0 - e_iceh[3])*(TBD[3]+tau[3]*T_C))
 
-        Tv23=TBU[3]+tau[3]*((1.0 - c_ice)*emissivityv[3]*Ts+c_ice*e_icev[3]*Ti_amsrv[3]+(1.0 - c_ice)*(1.0 - emissivityv[3])*\
-             (T_BOmegaV[3]+tau[3]*T_C)+c_ice*(1.0 - e_icev[3])*(TBD[3]+tau[3]*T_C))
+    Tv23=TBU[3]+tau[3]*((1.0 - c_ice)*emissivityv[3]*Ts+c_ice*e_icev[3]*Ti_amsrv[3]+(1.0 - c_ice)*(1.0 - emissivityv[3])*\
+         (T_BOmegaV[3]+tau[3]*T_C)+c_ice*(1.0 - e_icev[3])*(TBD[3]+tau[3]*T_C))
         
-        Th36=TBU[4]+tau[4]*((1.0 - c_ice)*emissivityh[4]*Ts+c_ice*e_iceh[4]*Ti_amsrh[4]+(1.0 - c_ice)*(1.0 - emissivityh[4])*\
-             (T_BOmegaH[4]+tau[4]*T_C)+c_ice*(1.0 - e_iceh[4])*(TBD[4]+tau[4]*T_C))
+    Th36=TBU[4]+tau[4]*((1.0 - c_ice)*emissivityh[4]*Ts+c_ice*e_iceh[4]*Ti_amsrh[4]+(1.0 - c_ice)*(1.0 - emissivityh[4])*\
+         (T_BOmegaH[4]+tau[4]*T_C)+c_ice*(1.0 - e_iceh[4])*(TBD[4]+tau[4]*T_C))
 
-        Tv36=TBU[4]+tau[4]*((1.0 - c_ice)*emissivityv[4]*Ts+c_ice*e_icev[4]*Ti_amsrv[4]+(1.0 - c_ice)*(1.0 - emissivityv[4])*\
-             (T_BOmegaV[4]+tau[4]*T_C)+c_ice*(1.0 - e_icev[4])*(TBD[4]+tau[4]*T_C))
+    Tv36=TBU[4]+tau[4]*((1.0 - c_ice)*emissivityv[4]*Ts+c_ice*e_icev[4]*Ti_amsrv[4]+(1.0 - c_ice)*(1.0 - emissivityv[4])*\
+         (T_BOmegaV[4]+tau[4]*T_C)+c_ice*(1.0 - e_icev[4])*(TBD[4]+tau[4]*T_C))
         
-        Th50=TBU[5]+tau[5]*((1.0 - c_ice)*emissivityh[5]*Ts+c_ice*e_iceh[5]*Ti_amsrh[5]+(1.0 - c_ice)*(1.0 - emissivityh[5])*\
-             (T_BOmegaH[5]+tau[5]*T_C)+c_ice*(1.0 - e_iceh[5])*(TBD[5]+tau[5]*T_C))
+    Th50=TBU[5]+tau[5]*((1.0 - c_ice)*emissivityh[5]*Ts+c_ice*e_iceh[5]*Ti_amsrh[5]+(1.0 - c_ice)*(1.0 - emissivityh[5])*\
+         (T_BOmegaH[5]+tau[5]*T_C)+c_ice*(1.0 - e_iceh[5])*(TBD[5]+tau[5]*T_C))
 
-        Tv50=TBU[5]+tau[5]*((1.0 - c_ice)*emissivityv[5]*Ts+c_ice*e_icev[5]*Ti_amsrv[5]+(1.0 - c_ice)*(1.0 - emissivityv[5])*\
-             (T_BOmegaV[5]+tau[5]*T_C)+c_ice*(1.0 - e_icev[5])*(TBD[5]+tau[5]*T_C))
+    Tv50=TBU[5]+tau[5]*((1.0 - c_ice)*emissivityv[5]*Ts+c_ice*e_icev[5]*Ti_amsrv[5]+(1.0 - c_ice)*(1.0 - emissivityv[5])*\
+         (T_BOmegaV[5]+tau[5]*T_C)+c_ice*(1.0 - e_icev[5])*(TBD[5]+tau[5]*T_C))
         
-        Th52=TBU[6]+tau[6]*((1.0 - c_ice)*emissivityh[6]*Ts+c_ice*e_iceh[6]*Ti_amsrh[6]+(1.0 - c_ice)*(1.0 - emissivityh[6])*\
-             (T_BOmegaH[6]+tau[6]*T_C)+c_ice*(1.0 - e_iceh[6])*(TBD[6]+tau[6]*T_C))
+    Th52=TBU[6]+tau[6]*((1.0 - c_ice)*emissivityh[6]*Ts+c_ice*e_iceh[6]*Ti_amsrh[6]+(1.0 - c_ice)*(1.0 - emissivityh[6])*\
+         (T_BOmegaH[6]+tau[6]*T_C)+c_ice*(1.0 - e_iceh[6])*(TBD[6]+tau[6]*T_C))
 
-        Tv52=TBU[6]+tau[6]*((1.0 - c_ice)*emissivityv[6]*Ts+c_ice*e_icev[6]*Ti_amsrv[6]+(1.0 - c_ice)*(1.0 - emissivityv[6])*\
-             (T_BOmegaV[6]+tau[6]*T_C)+c_ice*(1.0 - e_icev[6])*(TBD[6]+tau[6]*T_C))
+    Tv52=TBU[6]+tau[6]*((1.0 - c_ice)*emissivityv[6]*Ts+c_ice*e_icev[6]*Ti_amsrv[6]+(1.0 - c_ice)*(1.0 - emissivityv[6])*\
+         (T_BOmegaV[6]+tau[6]*T_C)+c_ice*(1.0 - e_icev[6])*(TBD[6]+tau[6]*T_C))
         
-        Th89=TBU[7]+tau[7]*((1.0 - c_ice)*emissivityh[7]*Ts+c_ice*e_iceh[7]*Ti_amsrh[7]+(1.0 - c_ice)*(1.0 - emissivityh[7])*\
-             (T_BOmegaH[7]+tau[7]*T_C)+c_ice*(1.0 - e_iceh[7])*(TBD[7]+tau[7]*T_C))
+    Th89=TBU[7]+tau[7]*((1.0 - c_ice)*emissivityh[7]*Ts+c_ice*e_iceh[7]*Ti_amsrh[7]+(1.0 - c_ice)*(1.0 - emissivityh[7])*\
+         (T_BOmegaH[7]+tau[7]*T_C)+c_ice*(1.0 - e_iceh[7])*(TBD[7]+tau[7]*T_C))
 
-        Tv89=TBU[7]+tau[7]*((1.0 - c_ice)*emissivityv[7]*Ts+c_ice*e_icev[7]*Ti_amsrv[7]+(1.0 - c_ice)*(1.0 - emissivityv[7])*\
-             (T_BOmegaV[7]+tau[7]*T_C)+c_ice*(1.0 - e_icev[7])*(TBD[7]+tau[7]*T_C))
+    Tv89=TBU[7]+tau[7]*((1.0 - c_ice)*emissivityv[7]*Ts+c_ice*e_icev[7]*Ti_amsrv[7]+(1.0 - c_ice)*(1.0 - emissivityv[7])*\
+         (T_BOmegaV[7]+tau[7]*T_C)+c_ice*(1.0 - e_icev[7])*(TBD[7]+tau[7]*T_C))
         
-        Tv=[Tv6,Tv10,Tv18,Tv23,Tv36,Tv50,Tv52,Tv89]
-        Th=[Th6,Th10,Th18,Th23,Th36,Th50,Th52,Th89]
-        Tb=np.array([Tv6,Th6,Tv10,Th10,Tv18,Th18,Tv23,Th23,Tv36,Th36,Tv89,Th89])
+    Tv=[Tv6,Tv10,Tv18,Tv23,Tv36,Tv50,Tv52,Tv89]
+    Th=[Th6,Th10,Th18,Th23,Th36,Th50,Th52,Th89]
+    Tb=np.array([Tv6,Th6,Tv10,Th10,Tv18,Th18,Tv23,Th23,Tv36,Th36,Tv89,Th89])
     return Tb

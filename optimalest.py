@@ -39,7 +39,6 @@ def optimize(Tb,inputpar):
     n=0
     while (n<=max_iter and dcost>eps):
         n=n+1
-
         # Apply forward model using current parameters (P):         
         # To be called with the following input: 
         # amsrrtm2.amsr(V, W, L, Ti, Ts, Ts_amsr, Ts_amsr, c_ice, ev_ice, eh_ice)
@@ -50,7 +49,8 @@ def optimize(Tb,inputpar):
         Ta=amsrrtm2.amsr(P[1],P[2],P[3],P[0],P[0],Ts_amsr,Ts_amsr,P[4],icemodel.ev_ice(Tb,P[0],P[5]),icemodel.eh_ice(Tb,P[0],P[5]))
         # Output brightness temperatures are given for the following frequencies:
         #   [Tv6,Th6,Tv10,Th10,Tv18,Th18,Tv23,Th23,Tv36,Th36,Tv89,Th89]
-      
+        #freq = np.array([7,11,19,24,37,89])
+        
         # Compute adjoint matrix (M): 
         for i in range(len_p):
             # Compute partial derivates (parameters are pertubed by 1% of current value):
@@ -65,12 +65,19 @@ def optimize(Tb,inputpar):
                  
             M[:,i]=dTdp.reshape(len_tb,1)
         
+        # Remove 89GHz channels:
+        #Se = Se[:len_tb-2,:len_tb-2]
+               
         # Compute S:
+        #S = (Sp.I + M[:len_tb-2,:].T*Se.I*M[:len_tb-2,:]).I
         S = (Sp.I + M.T*Se.I*M).I
         
         # New estimate for P (eq. 5.9, page 85 in Rodgers)
         P1 = P0.reshape((len_p,1)) + S*M.T*Se.I*(Tb.reshape((len_tb,1))-Ta.reshape((len_tb,1)) + 
-                        M*(P.reshape((len_p,1))-P0.reshape((len_p,1))))
+            M*(P.reshape((len_p,1))-P0.reshape((len_p,1))))
+        #P1 = P0.reshape((len_p,1)) + S*M[:len_tb-2,:].T*Se.I*(Tb[:len_tb-2].reshape((len_tb-2,1))-Ta[:len_tb-2].reshape((len_tb-2,1)) + 
+        #    M[:len_tb-2,:]*(P.reshape((len_p,1))-P0.reshape((len_p,1))))
+        
         P1 = np.squeeze(np.asarray(P1))
         
         # Ensure parameters stay within physical limits:
@@ -80,13 +87,20 @@ def optimize(Tb,inputpar):
             if (P1[k] > upperlimits[k]): P1[k] = upperlimits[k]
             
         # Compute new cost:
+        #cost1=np.sqrt(sum((Tb[:len_tb-2].reshape((len_tb-2,1))-Ta[:len_tb-2].reshape(len_tb-2,1))**2))
         cost1=np.sqrt(sum((Tb.reshape((len_tb,1))-Ta.reshape(len_tb,1))**2))
         dcost = cost-cost1
 
+        # Plot - observed and modelled data comparison for this location
+        #plt.figure()
+        #plt.plot(Tb,color='k',marker='o')
+        #plt.plot(Ta,color='b',marker='o')
+        
         # Check for convergence
         if n==max_iter or dcost<eps:
             P_final = np.copy(P1) # Use as final value
             S_diag = np.diag(S)
+            #cost=np.sqrt(sum((Tb[:len_tb-2].reshape((len_tb-2,1))-Ta[:len_tb-2].reshape((len_tb-2,1)))**2))
             cost=np.sqrt(sum((Tb.reshape((len_tb,1))-Ta.reshape((len_tb,1)))**2))
             
         else:
