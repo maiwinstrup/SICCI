@@ -17,6 +17,8 @@ import time
 import optimale_old
 import optimalest 
 import sett_input
+import sett_input_MEMLS 
+import optimalest_MEMLS
 from icemodel import liseequation
 from datetime import date
 
@@ -54,8 +56,10 @@ def validate_res(filename):
     T2m = nndf['t2m'].as_matrix() # 2m air temperature, from ECMWF
 
     #%% Initialize arrays
-    P_array = np.ones((len(Tb7h0),6))
-    S_array = np.ones((len(Tb7h0),6))
+#    P_array = np.ones((len(Tb7h0),6))
+#    S_array = np.ones((len(Tb7h0),6))
+    P_array = np.ones((len(Tb7h0),9))
+    S_array = np.ones((len(Tb7h0),9))
     cost_array = np.ones((len(Tb7h0),1))
     SDsim = np.ones((len(Tb7h0),1))
     
@@ -81,8 +85,10 @@ def validate_res(filename):
             
         #%% Optimize:
         # Set input values for parameters:
-        inputpar=sett_input.setinputpar(Tb)
-        P_final, S_diag, cost = optimalest.optimize(Tb,inputpar)
+        #inputpar = sett_input.setinputpar(Tb)
+        inputpar = sett_input_MEMLS.setinputpar(Tb)
+        
+        P_final, S_diag, cost = optimalest_MEMLS.optimize(Tb,inputpar)
         
         # Original version of OE scheme:
         #P_final_old, S_diag_old, cost_old = optimale_old.optimal(Tb)
@@ -120,7 +126,7 @@ def validate_res(filename):
 #%% Run for multiple days: 
 if __name__ == "__main__":
     year = 2015
-    month_day = (3,[19,24,25,26,27,29,30],4,[1,3])
+    month_day = (3,[19]) # (3,[19,24,25,26,27,29,30],4,[1,3])
 
     pool = mp.Pool(processes=4) # Allow 4 processes running at the same time 
     start_time = time.time()
@@ -129,11 +135,17 @@ if __name__ == "__main__":
     i=0
     for month in month_day[::2]:
         i=i+1
-        results = [pool.apply_async(
-                validate_res,args=('./RRDP_v2.0/NERSC_OIB/QSCAT-vs-SMAP-vs-SMOS-vs-ASCAT-vs-AMSR2-vs-ERA-vs-NERSC-OIB-'+ 
-                                   str(year)+ str(month).zfill(2) + str(day).zfill(2) +'.text',)) for day in month_day[2*i-1]]
-        output = [p.get() for p in results] # Results are not sorted by date
-        results_tot[i-1] = pd.concat(output)
+        #results = [pool.apply_async(
+        #        validate_res,args=('./RRDP_v2.0/NERSC_OIB/QSCAT-vs-SMAP-vs-SMOS-vs-ASCAT-vs-AMSR2-vs-ERA-vs-NERSC-OIB-'+ 
+        #                           str(year)+ str(month).zfill(2) + str(day).zfill(2) +'.text',)) for day in month_day[2*i-1]]
+        #output = [p.get() for p in results] # Results are not sorted by date
+        #results_tot[i-1] = pd.concat(output)
+        
+        # No parallelization:
+        for day in month_day[2*i-1]:
+            results = validate_res('./RRDP_v2.0/NERSC_OIB/QSCAT-vs-SMAP-vs-SMOS-vs-ASCAT-vs-AMSR2-vs-ERA-vs-NERSC-OIB-'+ 
+                                   str(year)+ str(month).zfill(2) + str(day).zfill(2) +'.text')
+        results_tot[i-1] = pd.concat(results)
     # Combine results in a dataframe:
     results_tot = pd.concat(results_tot)
 
